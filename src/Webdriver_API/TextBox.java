@@ -3,32 +3,59 @@ package Webdriver_API;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class TextBox {
+import common.commonFuntion;
+
+public class TextBox extends commonFuntion {
 	WebDriver driver;
 
 	@BeforeClass
 	public void beforeClass() {
 		System.setProperty("webdriver.chrome.driver", ".\\driver\\chromedriver.exe");
 		driver = new ChromeDriver();
+
+		openUrl(driver, "https://pay.zing.vn/wplogin/mobile/jxm");
+//		openUrl(driver, "https://pay.zing.vn/wplogin/mobile/jxm");
+
 		driver.get("https://pay.zing.vn/wplogin/mobile/jxm");
-		driver.manage().window().maximize();
+//		driver.manage().window().maximize();
+		maximizeBrowser(driver);
+
+	}
+
+	@Test
+	public void testCase01() throws Exception {
+		openUrl(driver, "http://the-internet.herokuapp.com/javascript_alerts");
+//		driver.get("http://the-internet.herokuapp.com/javascript_alerts");
+//		driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
+//		Alert alert = driver.switchTo().alert();
+
+		Actions action = new Actions(driver);
+		action.sendKeys(Keys.chord(Keys.CONTROL, "tab"));
+		action.sendKeys(Keys.TAB);
+
+		driver.get("https://www.24h.com.vn/");
+//		Thread.sleep(3000);
+//		action.sendKeys(Keys.TAB);
+//		Thread.sleep(3000);
+//		action.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+
+//		String text = driver.findElement(By.xpath("//p[@id='result']")).getText();
+//
+//		Assert.assertEquals("You clicked: Ok", text);
 
 	}
 
 //	@Test
-//	public void testCase01() {
-//		driver.get("http://demo.guru99.com/v4/");
-//		driver.get("http://demo.guru99.com/insurance/v1/index.php");
-//	}
-
-	@Test
 	public void testCase02() throws Exception {
 
 		driver.findElement(By.xpath("//input[@id='u']")).sendKeys("giinboo2");
